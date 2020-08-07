@@ -1,5 +1,24 @@
 class Smith {
-  double rrInterval, qtInterval, resultQTcorrected, steElevationInV360msAfterJ, rAmplitudeInV4, qrsAmplitudeInV2, resultSmith;
+  double stElevationInV360msAfterJ;
 
-  Smith({this.rrInterval, this.qtInterval, this.resultQTcorrected, this.steElevationInV360msAfterJ, this.rAmplitudeInV4, this.qrsAmplitudeInV2, this.resultSmith});
+  double qrsAmplitudeInV2;
+
+  double rAmplitudeInV4;
+
+  double rrInterval;
+
+  double rrIntervalCorrection = 1;
+
+  double qtInterval;
+
+  double qtIntervalCorrection = 1;
+
+  Smith({this.rrInterval, this.qtInterval, this.stElevationInV360msAfterJ, this.rAmplitudeInV4, this.qrsAmplitudeInV2});
+
+  int computeScore() {
+    return (1.062 * stElevationInV360msAfterJ + 0.052 * qtInterval - 0.268 * rAmplitudeInV4 - 0.151 * qrsAmplitudeInV2).floor();
+  }
+
+
+
 }

@@ -40,7 +40,6 @@ class _TidalState extends State<TidalPage> {
                 icon: Icon(Icons.arrow_downward),
                 iconSize: 24,
                 elevation: 16,
-                style: TextStyle(color: Colors.deepPurple),
                 underline: Container(
                   height: 2,
                   color: Colors.deepPurpleAccent,
