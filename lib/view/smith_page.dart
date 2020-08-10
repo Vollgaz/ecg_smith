@@ -11,13 +11,25 @@ class SmithPage extends StatefulWidget {
 class _SmithState extends State<SmithPage> {
   final _formKey = GlobalKey<FormState>();
   Smith _smith = new Smith();
-  int _score = 0;
+  double _score = 0.0;
+  String _avis = "";
+  Color _color = Colors.black;
+
+  void fillResult() {
+    _score = _smith.smithScore();
+    if (_score > 18.2) {
+      _avis = "STEMI requiered";
+      _color = Colors.red;
+    } else {
+      _avis = "Consider normal";
+      _color = Colors.green;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return SingleChildScrollView(
-
       child: Form(
         key: _formKey,
         child: Column(
@@ -26,14 +38,14 @@ class _SmithState extends State<SmithPage> {
           children: [
             Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               Text(
-                "$_score",
-                style: TextStyle(fontSize: 80.0),
+                "${_score.toStringAsFixed(1)}",
+                style: TextStyle(fontSize: 80.0, color: _color),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
                 child: Text(
-                  "status",
-                  style: TextStyle(fontSize: 20.0),
+                  "$_avis",
+                  style: TextStyle(fontSize: 20.0, color: _color),
                 ),
               ),
             ]),
@@ -46,39 +58,51 @@ class _SmithState extends State<SmithPage> {
               onChanged: (value) {},
             ),
             TextFormField(
-              decoration: new InputDecoration(labelText: "ST elevation in V3, 60ms after J point"),
+              decoration: new InputDecoration(
+                  labelText: "ST elevation in V3, 60ms after J point"),
               keyboardType: TextInputType.number,
               inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-              validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
-              onSaved: (newValue) => {_smith.stElevationInV360msAfterJ = double.parse(newValue)},
+              validator: (value) =>
+                  (value.isEmpty) ? 'Please enter a number' : null,
+              onSaved: (newValue) =>
+                  {_smith.stElevationInV360msAfterJ = double.parse(newValue)},
             ),
             TextFormField(
               decoration: new InputDecoration(labelText: "QRS amplitude in V2"),
               keyboardType: TextInputType.number,
               inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-              validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
-              onSaved: (newValue) => {_smith.qrsAmplitudeInV2 = double.parse(newValue)},
+              validator: (value) =>
+                  (value.isEmpty) ? 'Please enter a number' : null,
+              onSaved: (newValue) =>
+                  {_smith.qrsAmplitudeInV2 = double.parse(newValue)},
             ),
             TextFormField(
-              decoration: new InputDecoration(labelText: "R Wave amplitude in V4"),
+              decoration:
+                  new InputDecoration(labelText: "R Wave amplitude in V4"),
               keyboardType: TextInputType.number,
               inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-              validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
-              onSaved: (newValue) => {_smith.rAmplitudeInV4 = double.parse(newValue)},
+              validator: (value) =>
+                  (value.isEmpty) ? 'Please enter a number' : null,
+              onSaved: (newValue) =>
+                  {_smith.rAmplitudeInV4 = double.parse(newValue)},
             ),
             TextFormField(
               decoration: new InputDecoration(labelText: "RR interval"),
               keyboardType: TextInputType.number,
               inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-              validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
-              onSaved: (newValue) => {_smith.rrInterval = double.parse(newValue)},
+              validator: (value) =>
+                  (value.isEmpty) ? 'Please enter a number' : null,
+              onSaved: (newValue) =>
+                  {_smith.rrInterval = double.parse(newValue)},
             ),
             TextFormField(
               decoration: new InputDecoration(labelText: "QT Uncorrected"),
               keyboardType: TextInputType.number,
               inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-              validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
-              onSaved: (newValue) => {_smith.qtInterval = double.parse(newValue)},
+              validator: (value) =>
+                  (value.isEmpty) ? 'Please enter a number' : null,
+              onSaved: (newValue) =>
+                  {_smith.qtInterval = double.parse(newValue)},
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               RaisedButton(
@@ -86,24 +110,26 @@ class _SmithState extends State<SmithPage> {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.reset();
                     _smith = new Smith();
-                    _score = 0;
+                    _score = 0.0;
                     setState(() {});
                   }
                 },
                 child: Text('Clear'),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 color: Colors.grey,
               ),
               RaisedButton(
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    _score = _smith.computeScore();
+                    fillResult();
                     setState(() {});
                   }
                 },
                 child: Text('Submit'),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 color: Colors.lightBlue,
               )
             ])
@@ -124,7 +150,10 @@ class _SmithState extends State<SmithPage> {
     "Are there pathologic Q-waves in any of V2-V4?"
   ]
       .map((value) => DropdownMenuItem(
-            child: Row(children: [Checkbox(value: true, onChanged: (value) {}), SizedBox(width: 300, child: Text(value))]),
+            child: Row(children: [
+              Checkbox(value: true, onChanged: (value) {}),
+              SizedBox(width: 300, child: Text(value))
+            ]),
           ))
       .toList();
 }

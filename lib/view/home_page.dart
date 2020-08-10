@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: Text("EG Smith"),
+            title: Text("ECG Smith"),
             bottom: TabBar(
               tabs: <Widget>[Icon(Icons.favorite, color: Colors.red), Icon(Icons.local_hospital, color: Colors.white)],
             ),

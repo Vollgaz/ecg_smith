@@ -15,8 +15,8 @@ class Smith {
 
   Smith({this.rrInterval, this.qtInterval, this.stElevationInV360msAfterJ, this.rAmplitudeInV4, this.qrsAmplitudeInV2});
 
-  int computeScore() {
-    return (1.062 * stElevationInV360msAfterJ + 0.052 * qtInterval - 0.268 * rAmplitudeInV4 - 0.151 * qrsAmplitudeInV2).floor();
+  double  smithScore() {
+    return 1.062 * stElevationInV360msAfterJ + 0.052 * qtInterval - 0.268 * rAmplitudeInV4 - 0.151 * qrsAmplitudeInV2;
   }
 
 
