@@ -77,41 +77,59 @@ class _SmithState extends State<SmithPage> {
               validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
               onSaved: (newValue) => {_smith.rAmplitudeInV4 = double.parse(newValue)},
             ),
-            TextFormField(
-              decoration: new InputDecoration(labelText: "RR interval"),
-              keyboardType: TextInputType.number,
-              inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-              validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
-              onSaved: (newValue) => {_smith.rrInterval = double.parse(newValue)},
-            ),
-            DropdownButtonFormField(
-              icon: Icon(Icons.arrow_downward),
-              iconSize: 24,
-              items: [
-                DropdownMenuItem(child: Text("mm")),
-                DropdownMenuItem(child: Text("ms")),
-                DropdownMenuItem(child: Text("bpm")),
-              ],
-              onChanged: (value) {},
-            ),
-            TextFormField(
-              decoration: new InputDecoration(
-                labelText: "QT Uncorrected",
+            Row(children: [
+              Flexible(
+                flex: 2,
+                child: TextFormField(
+                  decoration: new InputDecoration(labelText: "RR interval"),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                  validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
+                  onSaved: (newValue) => {_smith.rrInterval = double.parse(newValue)},
+                ),
               ),
-              keyboardType: TextInputType.number,
-              inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-              validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
-              onSaved: (newValue) => {_smith.qtInterval = double.parse(newValue)},
-            ),
-            DropdownButtonFormField(
-              icon: Icon(Icons.arrow_downward),
-              iconSize: 24,
-              items: [
-                DropdownMenuItem(child: Text("mm")),
-                DropdownMenuItem(child: Text("ms")),
-              ],
-              onChanged: (value) {},
-            ),
+              Flexible(
+                flex: 1,
+                child: DropdownButtonFormField(
+                  decoration: InputDecoration(enabledBorder: InputBorder.none),
+                  icon: Icon(Icons.arrow_downward),
+                  iconSize: 24,
+                  items: [
+                    DropdownMenuItem(child: Text("mm")),
+                    DropdownMenuItem(child: Text("ms")),
+                    DropdownMenuItem(child: Text("bpm")),
+                  ],
+                  onChanged: (value) {},
+                ),
+              )
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Flexible(
+                flex: 2,
+                child: TextFormField(
+                  decoration: new InputDecoration(
+                    labelText: "QT Uncorrected",
+                  ),
+                  expands: false,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                  validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
+                  onSaved: (newValue) => {_smith.qtInterval = double.parse(newValue)},
+                ),
+              ),
+              Flexible(
+                  flex: 1,
+                  child: DropdownButtonFormField(
+                    decoration: InputDecoration(enabledBorder: InputBorder.none,),
+                    icon: Icon(Icons.arrow_downward),
+                    iconSize: 24,
+                    items: [
+                      DropdownMenuItem(child: Text("mm")),
+                      DropdownMenuItem(child: Text("ms")),
+                    ],
+                    onChanged: (value) {},
+                  ))
+            ]),
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               RaisedButton(
                 onPressed: () {
