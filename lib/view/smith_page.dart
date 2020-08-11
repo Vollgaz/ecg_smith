@@ -49,60 +49,68 @@ class _SmithState extends State<SmithPage> {
                 ),
               ),
             ]),
-            DropdownButton(
+            DropdownButtonFormField(
               icon: Icon(Icons.arrow_downward),
               iconSize: 24,
-              elevation: 16,
               isExpanded: true,
               items: dropdownQuestions,
               onChanged: (value) {},
             ),
             TextFormField(
-              decoration: new InputDecoration(
-                  labelText: "ST elevation in V3, 60ms after J point"),
+              decoration: new InputDecoration(labelText: "ST elevation in V3, 60ms after J point"),
               keyboardType: TextInputType.number,
               inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-              validator: (value) =>
-                  (value.isEmpty) ? 'Please enter a number' : null,
-              onSaved: (newValue) =>
-                  {_smith.stElevationInV360msAfterJ = double.parse(newValue)},
+              validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
+              onSaved: (newValue) => {_smith.stElevationInV360msAfterJ = double.parse(newValue)},
             ),
             TextFormField(
               decoration: new InputDecoration(labelText: "QRS amplitude in V2"),
               keyboardType: TextInputType.number,
               inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-              validator: (value) =>
-                  (value.isEmpty) ? 'Please enter a number' : null,
-              onSaved: (newValue) =>
-                  {_smith.qrsAmplitudeInV2 = double.parse(newValue)},
+              validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
+              onSaved: (newValue) => {_smith.qrsAmplitudeInV2 = double.parse(newValue)},
             ),
             TextFormField(
-              decoration:
-                  new InputDecoration(labelText: "R Wave amplitude in V4"),
+              decoration: new InputDecoration(labelText: "R Wave amplitude in V4"),
               keyboardType: TextInputType.number,
               inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-              validator: (value) =>
-                  (value.isEmpty) ? 'Please enter a number' : null,
-              onSaved: (newValue) =>
-                  {_smith.rAmplitudeInV4 = double.parse(newValue)},
+              validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
+              onSaved: (newValue) => {_smith.rAmplitudeInV4 = double.parse(newValue)},
             ),
             TextFormField(
               decoration: new InputDecoration(labelText: "RR interval"),
               keyboardType: TextInputType.number,
               inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-              validator: (value) =>
-                  (value.isEmpty) ? 'Please enter a number' : null,
-              onSaved: (newValue) =>
-                  {_smith.rrInterval = double.parse(newValue)},
+              validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
+              onSaved: (newValue) => {_smith.rrInterval = double.parse(newValue)},
+            ),
+            DropdownButtonFormField(
+              icon: Icon(Icons.arrow_downward),
+              iconSize: 24,
+              items: [
+                DropdownMenuItem(child: Text("mm")),
+                DropdownMenuItem(child: Text("ms")),
+                DropdownMenuItem(child: Text("bpm")),
+              ],
+              onChanged: (value) {},
             ),
             TextFormField(
-              decoration: new InputDecoration(labelText: "QT Uncorrected"),
+              decoration: new InputDecoration(
+                labelText: "QT Uncorrected",
+              ),
               keyboardType: TextInputType.number,
               inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-              validator: (value) =>
-                  (value.isEmpty) ? 'Please enter a number' : null,
-              onSaved: (newValue) =>
-                  {_smith.qtInterval = double.parse(newValue)},
+              validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
+              onSaved: (newValue) => {_smith.qtInterval = double.parse(newValue)},
+            ),
+            DropdownButtonFormField(
+              icon: Icon(Icons.arrow_downward),
+              iconSize: 24,
+              items: [
+                DropdownMenuItem(child: Text("mm")),
+                DropdownMenuItem(child: Text("ms")),
+              ],
+              onChanged: (value) {},
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               RaisedButton(
@@ -115,8 +123,7 @@ class _SmithState extends State<SmithPage> {
                   }
                 },
                 child: Text('Clear'),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 color: Colors.grey,
               ),
               RaisedButton(
@@ -128,8 +135,7 @@ class _SmithState extends State<SmithPage> {
                   }
                 },
                 child: Text('Submit'),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 color: Colors.lightBlue,
               )
             ])
@@ -150,10 +156,7 @@ class _SmithState extends State<SmithPage> {
     "Are there pathologic Q-waves in any of V2-V4?"
   ]
       .map((value) => DropdownMenuItem(
-            child: Row(children: [
-              Checkbox(value: true, onChanged: (value) {}),
-              SizedBox(width: 300, child: Text(value))
-            ]),
+            child: Row(children: [Checkbox(value: true, onChanged: (value) {}), SizedBox(width: 300, child: Text(value))]),
           ))
       .toList();
 }
