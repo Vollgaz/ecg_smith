@@ -79,7 +79,7 @@ class _SmithState extends State<SmithPage> {
             ),
             Row(children: [
               Flexible(
-                flex: 2,
+                flex: 5,
                 child: TextFormField(
                   decoration: new InputDecoration(labelText: "RR interval"),
                   keyboardType: TextInputType.number,
@@ -105,7 +105,7 @@ class _SmithState extends State<SmithPage> {
             ]),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Flexible(
-                flex: 2,
+                flex: 5,
                 child: TextFormField(
                   decoration: new InputDecoration(
                     labelText: "QT Uncorrected",
