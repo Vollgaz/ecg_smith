@@ -1,4 +1,4 @@
-import 'package:ecg_smith/model/smith.dart';
+import 'package:open_medic/model/smith.dart';
 import 'package:test/test.dart';
 
 void main() {

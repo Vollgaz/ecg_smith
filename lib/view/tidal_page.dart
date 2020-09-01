@@ -1,4 +1,4 @@
-import 'package:ecg_smith/model/tidal.dart';
+import 'package:open_medic/model/tidal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -20,6 +20,7 @@ class _TidalState extends State<TidalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        padding: EdgeInsets.all(10),
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text(
@@ -57,14 +58,14 @@ class _TidalState extends State<TidalPage> {
                   isExpanded: true,
                 ),
                 TextFormField(
-                  decoration: new InputDecoration(labelText: "Patient height in cm"),
+                  decoration: new InputDecoration(labelText: "Patient height", hintText: "in cm"),
                   keyboardType: TextInputType.number,
                   inputFormatters: [Common.digitInputFormatter],
                   validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
                   onSaved: (newValue) => _tidal.height = double.parse(newValue),
                 ),
                 TextFormField(
-                  decoration: new InputDecoration(labelText: "Ideal volume in mL/Kg"),
+                  decoration: new InputDecoration(labelText: "Ideal volume", hintText: "in mL/Kg"),
                   keyboardType: TextInputType.number,
                   inputFormatters: [Common.digitInputFormatter],
                   validator: (value) => (value.isEmpty) ? 'Please enter a number' : null,
@@ -75,7 +76,7 @@ class _TidalState extends State<TidalPage> {
           )
         ]),
       ),
-      floatingActionButton: FloatingActionButton(
+      /*floatingActionButton: FloatingActionButton(
         onPressed: () => setState(() {}),
         tooltip: 'Increment Counter',
         child: Icon(
@@ -83,7 +84,7 @@ class _TidalState extends State<TidalPage> {
           size: 35,
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,*/
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         child: Container(
@@ -91,9 +92,11 @@ class _TidalState extends State<TidalPage> {
           child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             RaisedButton(
               onPressed: () {
-                _formKey.currentState.reset();
-                _tidal = new TidalVolume();
-                setState(() {});
+                setState(() {
+                  _formKey.currentState.reset();
+                  _result = 0;
+                  _tidal = new TidalVolume();
+                });
               },
               child: Text('Clear'),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -102,9 +105,10 @@ class _TidalState extends State<TidalPage> {
             RaisedButton(
               onPressed: () {
                 if (_formKey.currentState.validate()) {
-                  _formKey.currentState.save();
-                  _result = _tidal.realVolume();
-                  setState(() {});
+                  setState(() {
+                    _formKey.currentState.save();
+                    _result = _tidal.realVolume();
+                  });
                 }
               },
               child: Text('Submit'),

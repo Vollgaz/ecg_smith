@@ -1,4 +1,4 @@
-# ecg_smith
+# open_medic
 
 A new Flutter application.
 

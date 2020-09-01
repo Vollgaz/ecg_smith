@@ -1,4 +1,4 @@
-package com.github.vollgaz.ecg_smith
+package com.github.vollgaz.open_medic
 
 import io.flutter.embedding.android.FlutterActivity
 

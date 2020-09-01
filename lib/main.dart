@@ -1,4 +1,4 @@
-import 'package:ecg_smith/view/home_page.dart';
+import 'package:open_medic/view/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
