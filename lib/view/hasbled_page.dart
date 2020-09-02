@@ -125,7 +125,7 @@ class _HASBLEDState extends State<HASBLEDPage> {
                 setState(() {
                   _formKey.currentState.reset();
                   hasbledDisplay = new HasbledDisplay();
-                  updateResult();
+                  _result = HasbledDisplay.getEmptyScore();
                 });
               },
               child: Text('Clear'),

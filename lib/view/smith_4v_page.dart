@@ -129,7 +129,7 @@ class _SmithState extends State<Smith4VPage> {
                 Text("If there is LVH, it may not apply. If there are features that make LAD occlusion obvious"
                     " (inferior or anterior ST depression, convexity, terminal QRS distorsion, Q-waves), then the equation may NOT apply.\n"),
                 Text("These kinds of cases were excluded from the study as obvious anterior STEMI.\n"),
-                Text("ST elevation (STE) is measured 60 milliseconds after the J-point, relative to the PR segment, in millimiters."),
+                //Text("ST elevation (STE) is measured 60 milliseconds after the J-point, relative to the PR segment, in millimiters."),
               ],
             ),
           ),
