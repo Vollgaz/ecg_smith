@@ -13,16 +13,7 @@ class _SmithState extends State<Smith3VPage> {
   final _formKey = GlobalKey<FormState>();
   SmithDisplay _smithDisplay = SmithDisplay();
 
-  Widget _result = Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-    Text(
-      "0.0",
-      style: TextStyle(fontSize: 80.0, color: Colors.black),
-    ),
-    Text(
-      "No result",
-      style: TextStyle(fontSize: 20.0, color: Colors.black),
-    )
-  ]);
+  Widget _result = SmithDisplay.getEmptyScore();
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +61,7 @@ class _SmithState extends State<Smith3VPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.red,
         onPressed: () => setState(() {
           _showMyDialog();
         }),
@@ -85,7 +77,7 @@ class _SmithState extends State<Smith3VPage> {
             RaisedButton(
               onPressed: () {
                 _formKey.currentState.reset();
-                _result = _getEmptyScore();
+                _result = SmithDisplay.getEmptyScore();
                 setState(() {});
               },
               child: Text('Clear'),
@@ -144,33 +136,5 @@ class _SmithState extends State<Smith3VPage> {
     );
   }
 
-  List<DropdownMenuItem> _dropdownQuestions() {
-    return [
-      "Is there a bundle branch block?",
-      "Is the T-wave inverted in any of V2-V6, but not due to benign T-wave inversion?",
-      "Is the ST-segment elevated >5mm in any lead?",
-      "Is terminal QRS distorsion present in V2 and V3?",
-      "Do any of leads V2-V6 have a convex ST-segment?",
-      "Is there significant ST-depression in II, III, or aVF?",
-      "Is there ST depression in V2-V6?",
-      "Are there pathologic Q-waves in any of V2-V4?"
-    ]
-        .map((value) => DropdownMenuItem(
-              child: Row(children: [Checkbox(value: true, onChanged: (value) {}), SizedBox(width: 300, child: Text(value))]),
-            ))
-        .toList();
-  }
 
-  Column _getEmptyScore() {
-    return Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      Text(
-        "0.0",
-        style: TextStyle(fontSize: 80.0, color: Colors.black),
-      ),
-      Text(
-        "No result",
-        style: TextStyle(fontSize: 20.0, color: Colors.black),
-      )
-    ]);
-  }
 }

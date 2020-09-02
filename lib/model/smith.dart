@@ -85,6 +85,35 @@ class SmithDisplay {
     }
   }
 
+  static Column getEmptyScore() {
+    return Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      Text(
+        "0.0",
+        style: TextStyle(fontSize: 80.0, color: Colors.black),
+      ),
+      Text(
+        "No result",
+        style: TextStyle(fontSize: 20.0, color: Colors.black),
+      )
+    ]);
+  }
+
+  static List<DropdownMenuItem> dropdownQuestions() {
+    return [
+      "Is there a bundle branch block?",
+      "Is the T-wave inverted in any of V2-V6, but not due to benign T-wave inversion?",
+      "Is the ST-segment elevated >5mm in any lead?",
+      "Is terminal QRS distorsion present in V2 and V3?",
+      "Do any of leads V2-V6 have a convex ST-segment?",
+      "Is there significant ST-depression in II, III, or aVF?",
+      "Is there ST depression in V2-V6?",
+      "Are there pathologic Q-waves in any of V2-V4?"
+    ]
+        .map((value) => DropdownMenuItem(
+      child: Row(children: [Checkbox(value: true, onChanged: (value) {}), SizedBox(width: 300, child: Text(value))]),
+    ))
+        .toList();
+  }
 
 
 }

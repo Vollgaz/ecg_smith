@@ -76,15 +76,6 @@ class _TidalState extends State<TidalPage> {
           )
         ]),
       ),
-      /*floatingActionButton: FloatingActionButton(
-        onPressed: () => setState(() {}),
-        tooltip: 'Increment Counter',
-        child: Icon(
-          Icons.info,
-          size: 35,
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,*/
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         child: Container(
