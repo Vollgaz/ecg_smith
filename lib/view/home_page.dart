@@ -1,3 +1,4 @@
+import 'package:open_medic/view/hasbled_page.dart';
 import 'package:open_medic/view/smith_3v_page.dart';
 import 'package:open_medic/view/smith_4v_page.dart';
 import 'package:open_medic/view/tidal_page.dart';
@@ -11,7 +12,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 3,
+        length: 4,
         child: Scaffold(
           appBar: AppBar(
             toolbarHeight: 70,
@@ -20,11 +21,11 @@ class HomePage extends StatelessWidget {
               isScrollable: true,
 
               labelStyle:TextStyle(fontSize: 15),
-              tabs: <Widget>[Text("ECG 4V"), Text("ECG 3V"), Text("Tidal")],
+              tabs: <Widget>[Text("ECG 4V"), Text("ECG 3V"), Text("Tidal"), Text("HAS-BLED")],
             ),
           ),
           body: TabBarView(
-            children: <Widget>[Smith4VPage(), Smith3VPage(), TidalPage()],
+            children: <Widget>[Smith4VPage(), Smith3VPage(), TidalPage(), HASBLEDPage()],
           ),
 
         ));
